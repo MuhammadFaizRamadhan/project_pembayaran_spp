@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Siswa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    @include('components.sidebar_user') {{-- Ganti sesuai sidebar user milikmu --}}
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10 relative">
+        <!-- Flash Message -->
+        @if(session('success'))
+            <div id="successAlert" class="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow z-50 transition-all duration-300">
+                <strong>Sukses!</strong> {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div id="errorAlert" class="absolute top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg shadow z-50 transition-all duration-300">
+                <strong>Gagal!</strong> {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="bg-white p-8 rounded-2xl shadow max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Informasi Pribadi</h2>
+
+            <form action="{{ route('user.updateProfile') }}" method="POST" class="space-y-6">
+                @csrf
+                @method('PUT')
+
+                <!-- NISN dan Nama -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium">NISN</label>
+                        <input type="text" name="nisn" value="{{ $user->NISN }}" readonly
+                               class="w-full mt-1 p-3 rounded-lg border bg-gray-100 cursor-not-allowed" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium">Nama</label>
+                        <input type="text" name="nama" value="{{ $user->nama }}"
+                               class="w-full mt-1 p-3 rounded-lg border" required />
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-gray-700 font-medium">Email</label>
+                    <div class="relative">
+                        <input type="email" name="email" value="{{ $user->email }}"
+                               class="w-full mt-1 p-3 rounded-lg border pr-20" required />
+                        <span class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">Verified</span>
+                    </div>
+                </div>
+
+                <!-- Alamat -->
+                <div>
+                    <label class="block text-gray-700 font-medium">Alamat</label>
+                    <input type="text" name="alamat" value="{{ $user->alamat }}"
+                           class="w-full mt-1 p-3 rounded-lg border" required />
+                </div>
+
+                <!-- Tombol -->
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="reset"
+                            class="px-6 py-2 border border-orange-400 text-orange-500 rounded-lg hover:bg-orange-100 transition">
+                        Batal
+                    </button>
+                    <button type="submit"
+                            class="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<!-- Auto-hide flash message -->
+<script>
+    setTimeout(() => {
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+        if (successAlert) successAlert.style.display = 'none';
+        if (errorAlert) errorAlert.style.display = 'none';
+    }, 3000); // hilang dalam 3 detik
+</script>
+
+</body>
+</html>
