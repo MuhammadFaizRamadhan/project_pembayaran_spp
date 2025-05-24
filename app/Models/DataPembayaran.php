@@ -19,5 +19,10 @@ class DataPembayaran extends Model
     {
         return $this->belongsTo(\App\Models\Admin::class, 'admin_id');
     }
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'id_data_pembayaran');
+    }
+
 
 }

@@ -9,10 +9,10 @@
 
 <div class="flex min-h-screen">
     <!-- Sidebar -->
-    @include('components.sidebar_user') {{-- Ganti sesuai sidebar user milikmu --}}
+    @include('components.sidebar_user')
 
     <!-- Main Content -->
-    <main class="flex-1 p-10 relative">
+    <main class="flex-1 relative ml-64 p-8">
         <!-- Flash Message -->
         @if(session('success'))
             <div id="successAlert" class="absolute top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow z-50 transition-all duration-300">
@@ -27,9 +27,24 @@
         <div class="bg-white p-8 rounded-2xl shadow max-w-4xl mx-auto">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Informasi Pribadi</h2>
 
-            <form action="{{ route('user.updateProfile') }}" method="POST" class="space-y-6">
+            <form action="{{ route('user.updateProfile') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 @method('PUT')
+
+                <!-- Foto Profil -->
+                <div class="flex flex-col items-center">
+                    <label class="block text-gray-700 font-medium mb-2">Foto Profil</label>
+                    
+                    @if ($user->foto)
+                        <img src="{{ asset('storage/foto_siswa/' . basename($user->foto)) }}" alt="Foto Profil" class="w-32 h-32 object-cover mb-4 shadow">
+                    @else
+                        <div class="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center mb-4">
+                            <span class="text-gray-600 text-sm">Tidak Ada Foto</span>
+                        </div>
+                    @endif
+
+                    <input type="file" name="foto" accept="image/*" class="block text-sm text-gray-500" />
+                </div>
 
                 <!-- NISN dan Nama -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -48,11 +63,8 @@
                 <!-- Email -->
                 <div>
                     <label class="block text-gray-700 font-medium">Email</label>
-                    <div class="relative">
-                        <input type="email" name="email" value="{{ $user->email }}"
-                               class="w-full mt-1 p-3 rounded-lg border pr-20" required />
-                        <span class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">Verified</span>
-                    </div>
+                    <input type="email" name="email" value="{{ $user->email }}"
+                           class="w-full mt-1 p-3 rounded-lg border" required />
                 </div>
 
                 <!-- Alamat -->
@@ -63,13 +75,9 @@
                 </div>
 
                 <!-- Tombol -->
-                <div class="flex justify-end space-x-4 pt-4">
-                    <button type="reset"
-                            class="px-6 py-2 border border-orange-400 text-orange-500 rounded-lg hover:bg-orange-100 transition">
-                        Batal
-                    </button>
+                <div class="flex justify-end pt-4">
                     <button type="submit"
-                            class="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">
+                            class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
                         Simpan Perubahan
                     </button>
                 </div>
@@ -85,7 +93,7 @@
         const errorAlert = document.getElementById('errorAlert');
         if (successAlert) successAlert.style.display = 'none';
         if (errorAlert) errorAlert.style.display = 'none';
-    }, 3000); // hilang dalam 3 detik
+    }, 3000);
 </script>
 
 </body>

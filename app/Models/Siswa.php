@@ -9,9 +9,8 @@ class Siswa extends Model
 {
     use HasFactory;
 
-    // Tentukan nama tabel yang benar
-    protected $table = 'siswa'; // ✅ Pastikan ini adalah nama tabel yang benar
+    protected $table = 'siswa';
 
-    // Jika kamu memiliki kolom lain yang perlu diatur
-    protected $fillable = ['NISN', 'nama', 'alamat', 'email', 'password']; 
+    // Tambahkan 'foto' agar bisa disimpan ke database
+    protected $fillable = ['NISN', 'nama', 'alamat', 'email', 'password', 'foto'];
 }

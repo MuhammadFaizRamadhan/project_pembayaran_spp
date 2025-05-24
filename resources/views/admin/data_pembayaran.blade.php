@@ -9,7 +9,7 @@
 <div class="flex min-h-screen">
     @include('components.sidebar_admin')
 
-    <main class="flex-1 p-8">
+    <main class="flex-1  ml-64 p-8">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-semibold text-gray-800">Data Pembayaran</h1>
             <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">+ Tambah</button>
@@ -50,11 +50,11 @@
                         <td class="px-4 py-3 text-center">Rp {{ number_format($p->tagihan, 0, ',', '.') }}</td>
                         <td class="px-4 py-3 text-center">{{ ucfirst($p->status) }}</td>
                         <td class="px-4 py-3 text-center space-x-2">
-                            <button onclick="openEditModal({{ $p->id }}, '{{ $p->user_id }}', '{{ $p->bulan }}', '{{ $p->tahun }}', '{{ $p->tagihan }}', '{{ $p->status }}')" class="text-blue-500 hover:text-blue-700 font-medium">Edit</button>
+                            <button onclick="openEditModal({{ $p->id }}, '{{ $p->user_id }}', '{{ $p->bulan }}', '{{ $p->tahun }}', '{{ $p->tagihan }}', '{{ $p->status }}')" class="bg-blue-500 text-white hover:text-blue-900 p-2 rounded font-medium">Edit</button>
                             <form action="{{ route('data_pembayaran.destroy', $p->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus data ini?')">
                                 @csrf
                                 @method('DELETE')
-                                <button class="text-red-500 hover:text-red-700 font-medium">Hapus</button>
+                                <button class="bg-red-500 text-white hover:text-red-900 p-2 rounded font-medium">Hapus</button>
                             </form>
                         </td>
                     </tr>
