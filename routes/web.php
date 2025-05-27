@@ -46,6 +46,10 @@ Route::get('/admin/riwayat_transaksi', [TransaksiController::class, 'index'])->n
 // Untuk update status
 Route::put('/admin/riwayat_transaksi/status/{id}', [TransaksiController::class, 'updateStatus'])->name('admin.riwayat_transaksi.updateStatus');
 
+// admin site rekap_pembayaran
+Route::get('/admin/rekap_pembayaran', [TransaksiController::class, 'rekapPembayaran'])->name('admin.rekap_pembayaran');
+Route::get('/admin/rekap-pembayaran/pdf', [TransaksiController::class, 'exportPDF'])->name('admin.rekap_pembayaran.pdf');
+
 // user site (profile user)
 Route::get('/profile/user', [UserController::class, 'showProfile'])->name('user.profile');
 Route::put('/profile/user', [UserController::class, 'updateProfile'])->name('user.updateProfile');

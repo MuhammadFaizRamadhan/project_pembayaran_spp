@@ -1,7 +1,7 @@
 <aside class="w-64 h-screen fixed left-0 top-0 bg-white shadow-md overflow-y-auto">
     <div class="p-6 border-b flex items-center gap-3">
         <img src="{{ asset('images/logo_smam_3_bungah_new.jpg') }}" alt="Logo" class="w-10 h-10 object-contain">
-        <h1 class="text-l font-bold text-blue-500">SMA Muhammadiyah 3 Bungah</h1>
+        <h1 class="text-l font-bold text-blue-500">SMA Muhammadiyah 3 Gresik</h1>
     </div>
     <nav class="mt-6">
         <a href="/dashboard/user" class="block px-6 py-3 text-gray-700 hover:bg-blue-100">Dashboard</a>

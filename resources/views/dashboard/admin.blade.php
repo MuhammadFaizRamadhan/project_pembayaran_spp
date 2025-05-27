@@ -32,7 +32,7 @@
         <div class="relative mb-8 rounded-xl overflow-hidden shadow">
             <img src="{{ asset('images/banner_smam_3_bungah.jpg') }}" alt="Banner Sekolah" class="w-full h-64 object-cover">
             <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <h2 class="text-white text-3xl md:text-4xl font-bold">SMA MUHAMMADIYAH 3 BUNGAH</h2>
+                <h2 class="text-white text-3xl md:text-4xl font-bold">SMA MUHAMMADIYAH 3 GRESIK</h2>
             </div>
         </div>
         <!-- Overview Cards -->

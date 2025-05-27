@@ -13,4 +13,10 @@ class Siswa extends Model
 
     // Tambahkan 'foto' agar bisa disimpan ke database
     protected $fillable = ['NISN', 'nama', 'alamat', 'email', 'password', 'foto'];
+
+    public function pembayaran()
+    {
+        return $this->hasMany(DataPembayaran::class, 'user_id');
+    }
+
 }

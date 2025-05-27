@@ -17,7 +17,7 @@
             <div class="mb-6">
                 <div class="w-8 h-8 bg-blue-500 rounded-full mb-2"></div>
                 <h2 class="text-2xl font-bold">Welcome to </h2>
-                <p class="text-gray-500 text-sm">SMA Muhammadiyah 3 Bungah</p>
+                <p class="text-gray-500 text-sm">SMA Muhammadiyah 3 Gresik</p>
             </div>
 
             @if(session('error'))
